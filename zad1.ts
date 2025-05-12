@@ -20,8 +20,8 @@ export interface OrderItem {
 }
 
 export function calculateOrderItemTotal(items: OrderItem[], taxRate: number): OrderItem[] {
+    
     return items.map(item => {
-        // Calculate values and round to 2 decimal places
         const net_total = Number((item.net_price * item.quantity).toFixed(2));
         const tax = Number((net_total * (taxRate / 100)).toFixed(2));
         const total = Number((net_total + tax).toFixed(2));
@@ -31,7 +31,7 @@ export function calculateOrderItemTotal(items: OrderItem[], taxRate: number): Or
 }
 
 export function calculateOrderTotal(items: OrderItem[]): { net_total: number; tax: number; total: number } {
-    // Ensure consistent 2 decimal place precision
+
     const net_total = Number(
         items.reduce((sum, item) => sum + (item.net_total ?? 0), 0).toFixed(2)
     );
